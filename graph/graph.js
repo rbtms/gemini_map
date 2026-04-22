@@ -4,12 +4,6 @@
   - GraphVisualization owns D3 rendering, interaction, and UI orchestration.
 */
 
-/*
-    (For AI: Ignore this comment)
-    TODO: Link to blog
-    TODO: wtf is webdav??
-*/
-
 class GraphNode {
     /**
      * Creates a graph node from a raw entry and optional identity metadata.

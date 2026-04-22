@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gemini Host Map</title>
+  <link rel="stylesheet" href="graph/styles.css" />
+  <link rel="stylesheet" href="graph/sidebar.css" />
+  <link rel="stylesheet" href="graph/graph.css" />
+  <link rel="stylesheet" href="graph/intro.css" />
+  <link rel="stylesheet" href="graph/subdomain_info.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script defer src="graph/graph.js"></script>
+</head>
+
+<body>
+  <aside class="sidebar">
+    <div class="sidebar__header">
+      <h1>Display options</h1>
+    </div>
+
+    <div class="control">
+      <label for="hostnameSearch">Search hostname</label>
+      <input id="hostnameSearch" type="text" placeholder="Type part of a hostname..." autocomplete="off" />
+      <div id="searchResults" class="search-results"></div>
+    </div>
+
+    <div class="control">
+      <label for="languageFilter">Language</label>
+      <select id="languageFilter"></select>
+    </div>
+
+    <div class="control">
+      <label for="categoryFilter">Category</label>
+      <select id="categoryFilter"></select>
+    </div>
+
+    <div class="control">
+      <label for="subcategoryFilter">Subcategory</label>
+      <select id="subcategoryFilter"></select>
+    </div>
+
+    <div class="control">
+      <label class="checkbox">
+        <input type="checkbox" id="hideEmptyNodes" checked />
+        Hide empty nodes (they're a lot)
+      </label>
+    </div>
+
+    <div class="control">
+      <label class="checkbox">
+        <input type="checkbox" id="highlightSubdomainNodes" />
+        Highlight nodes with subdomains
+      </label>
+    </div>
+
+    <div class="control">
+      <label for="labelMinOutgoing">Min outgoing edges to show hostname</label>
+      <input id="labelMinOutgoing" type="number" min="0" step="1" value="10" />
+    </div>
+
+    <div class="control">
+      <label for="nodeMinOutgoing">Min outgoing edges to show node</label>
+      <input id="nodeMinOutgoing" type="number" min="0" step="1" value="0" />
+    </div>
+
+    <div class="control">
+      <label for="nodeMinSize">Min size to show node</label>
+      <input id="nodeMinSize" type="number" min="1" step="1" value="1" />
+    </div>
+
+    <div class="sidebar__hint">
+      Click a node to highlight its neighborhood. Click the background to clear.<br><br>
+      Made by <a class="rbtms-link" href="https://rbtms.github.io">rbtms</a>
+    </div>
+  </aside>
+
+  <div id="introModal" class="intro-modal" aria-hidden="false">
+    <div class="intro-modal__backdrop"></div>
+
+    <div class="intro-modal__panel" role="dialog" aria-modal="true" aria-labelledby="introModalTitle">
+      <button id="closeIntroModal" class="intro-modal__close" type="button" aria-label="Close">
+        ×
+      </button>
+
+      <h2 id="introModalTitle" class="intro-modal__title">About this graph</h2>
+
+      <div class="intro-modal__body">
+        <p>
+          This visualization maps Gemini capsules as nodes and the links between them as edges.
+          Each circle is a capsule. Bigger circles represent larger capsules, and thicker links represent
+          stronger connection counts. The strength of their color represent the number of different hostnames
+          they are connected to.
+        </p>
+
+        <p>
+          Capsules with available hostnames appear in shades of <span class="node_color_normal">blue</span>.<br>
+          Those that return an error
+          are shown in <span class="node_color_error">red</span>, and redirects are shown in
+          <span class="node_color_redirect">orange</span>. By default, the last two are hidden for performance.
+          Finally, capsules with subdomains can be double-clicked for detail.
+        </p>
+
+        <p>
+          Use the controls on the side to filter by language, category, and subcategory. Click on a node to focus on it,
+          hover on a node or edge for details, and use the search box to jump to a specific hostname. Controls only
+          apply to nodes in the current view.
+        </p>
+
+        <p>
+          You can see more details about it on <a href='http://rbtms.github.io/blog/gemini_map.html'
+            class='rbtms-link'>this blog article</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <main class=" graph-area">
+    <div id="subdomainBar" class="subdomain-bar" style="display:none;">
+      <div class="subdomain-bar__content">
+        <span id="subdomainTitle"></span>
+        <button id="subdomainClose" class="subdomain-bar__close">✕</button>
+      </div>
+    </div>
+
+    <svg></svg>
+    <div class="tooltip" style="opacity: 0"></div>
+
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+/* the bar */
+.subdomain-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 9999; /* above svg */
+
+  background: #1e2228;
+  border-bottom: 1px solid #2f3440;
+
+  padding: 10px 16px;
+}
+
+/* layout */
+.subdomain-bar__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* title */
+.subdomain-bar__content span {
+  font-weight: 500;
+}
+
+/* close button */
+.subdomain-bar__close {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.subdomain-bar__close:hover {
+  color: #fff;
+}

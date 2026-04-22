@@ -8,5 +8,5 @@ It can be accessed through [here](https://rbtms.github.io/gemini_map/).
 
 ## Files
 
-The database can be downloaded [here](https://mega.nz/file/wggnTRbZ#M-UQ8AHUArb61QckS7ZixyUObUwrpKPIjKN0Ubj1Njk).
+The database with the URLs, links and hostname statistics can be downloaded [here](https://mega.nz/file/wggnTRbZ#M-UQ8AHUArb61QckS7ZixyUObUwrpKPIjKN0Ubj1Njk).
 
